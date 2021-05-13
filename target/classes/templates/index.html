@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <title>OnlineShop</title>
+</head>
+<body>
+    <div class="container">
+        <div class="reg">
+            <a href="">Rejestracja</a>
+            <a href="/login">Logowanie</a>
+            <a href="/logout" th:if="${logged == true}">Wyloguj</a>
+        </div>
+        <div class="home"></div>
+        <div class="menu">
+            <a href="">Strona Główna</a>
+            <a href="">Koszyk</a>
+            <a href="">Historia</a>
+        </div>
+        <div id="content">
+            <th:block th:each="item : ${items}">
+                <div class="item-content">
+                    <p th:text="${item.name}" class="item-name"></p>
+                    
+                    <div class="item-info">
+                        <div th:text="'Cena: ' + ${item.price}"></div>
+                        <div th:text="'Ilość sztuk: ' + ${item.quantity}"></div>
+                        <div th:text="'Kod: ' + ${item.code}"></div>
+                        <!-- <div th:if="${role?.name() == 'ADMIN'}"><a th:href="@{/editBook/{isbn}(isbn=${book.isbn})}">edytuj</a></div>
+                        <div th:if="${role?.name() == 'USER'}"><a th:href="@{/addToBasket/{isbn}(isbn=${book.isbn})}">dodaj do koszyka</a></div> -->
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</body>
+</html>
