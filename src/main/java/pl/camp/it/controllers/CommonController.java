@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.camp.it.database.Database;
 import pl.camp.it.model.Item;
+import pl.camp.it.model.User;
 import pl.camp.it.session.SessionObject;
 
 import javax.annotation.Resource;
@@ -25,8 +26,11 @@ public class CommonController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String main(Model model) {
         List<Item> items = this.database.getAllItems();
+        List<User> users = this.database.getAllUsers();
+
         model.addAttribute("items", items);
-         model.addAttribute("logged", this.sessionObject.isLogged());
+        model.addAttribute("name", users);
+        model.addAttribute("logged", this.sessionObject.isLogged());
         model.addAttribute("role",
                 this.sessionObject.getUser() != null ? this.sessionObject.getUser().getStatus() : null);
         return "index";

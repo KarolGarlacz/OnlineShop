@@ -5,37 +5,82 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <title>OnlineShop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>Online shop</title>
 </head>
 <body>
-    <div class="container">
-        <div class="reg">
-            <a href="">Rejestracja</a>
-            <a href="/login">Logowanie</a>
-            <a href="/logout" th:if="${logged == true}">Wyloguj</a>
-        </div>
-        <div class="home"></div>
-        <div class="menu">
-            <a href="">Strona Główna</a>
-            <a href="">Koszyk</a>
-            <a href="">Historia</a>
-        </div>
-        <div id="content">
-            <th:block th:each="item : ${items}">
-                <div class="item-content">
-                    <p th:text="${item.name}" class="item-name"></p>
-                    
-                    <div class="item-info">
-                        <div th:text="'Cena: ' + ${item.price}"></div>
-                        <div th:text="'Ilość sztuk: ' + ${item.quantity}"></div>
-                        <div th:text="'Kod: ' + ${item.code}"></div>
+<div class="wrapper">
+    <header id="nav">
+        <div class="container">
+            <div class="row">
+                <div class="brand-name">
 
-                    </div>
+                   <!-- Wywala błąd 500 - nie wiem jak wyciągnąć imie użytkownika/admina po zalogowaniu-->
+
+                   <!-- <p th:if="${logged == true}" th:text="'Witaj: ' + ${user.name}"></p>-->
                 </div>
-            </th:block>
+
+                <div class="navbar">
+                    <ul>
+                        <li><a href="" th:if="${logged == false}">Rejestracja</a>
+                        <a href="/login" th:if="${logged == false}">Zaloguj</a>
+                        <a href="/logout" th:if="${logged == true}">Wyloguj</a>
+                            <a href="/history" th:if="${role?.name() == 'USER'}">Historia</a>
+                            <a href="/basket" th:if="${role?.name() == 'USER'}"><i class="fas fa-shopping-basket"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
+
+    <section class="home" id="home">
+        ONLINE SHOP
+    </section>
+    <section class="main-menu">
+        <div class="grid-container">
+            <div class="grid-item-menu">
+                <div class="cat">Kategorie</div>
+                <div class="products">Telefony</div>
+                <div class="products">Laptopy</div>
+                <div class="products">Tablety</div>
+
+            </div>
+            <div class="grid-item">
+                <div id="content">
+                    <div class="add-item" th:if="${role?.name() == 'USER'}"><a href="/addItem" class="addItem">Dodaj przedmiot</a></div>
+
+                    <th:block th:each="item : ${items}">
+
+                    <div class="item">
+
+                        <p th:text="${item.name}" class="item-name"></p>
+
+                        <div class="item-info">
+
+                            <div class="datail">
+                                <p class="price" th:text="'Kategoria: ' + ${item.category}"></p>
+                                <p class="quantity" th:text="'Ilość sztuk: ' + ${item.quantity}"></p>
+                                <p class="code" th:text="'Kod: ' + ${item.code}"></p>
+                            </div>
+                            <div class="price" th:text="'Cena: ' + ${item.price}">></div>
+                            <div class="button">
+                                <button class="buy" th:if="${logged == false}" method ="post" onsubmit=" return errorFunction()">Kup</button>
+                                <div class="buy" th:if="${role?.name() == 'USER'}"><a th:href="@{/addToBasket/{code}(code=${item.code})}">Kup</a></div>
+                                <div class="buy" th:if="${role?.name() == 'ADMIN'}"><a th:href="@{/editItem/{code}(code=${item.code})}">Edytuj</a></div>
+                                <div class="buy" th:if="${role?.name() == 'ADMIN'}"><i class="fas fa-trash"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    </th:block>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+<script src="app.js"></script>
 </body>
 </html>

@@ -20,3 +20,7 @@ function validate() {
 
     return flag;
 }
+
+function errorFunction(){
+    alert("Zaloguj się przed zakupami")
+}

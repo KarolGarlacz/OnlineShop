@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <title>Online shop</title>
+</head>
+<body>
+<div id="content">
+  <th:block th:each="basketPosition : ${basket.basketPositions}">
+    <div class="position">
+      <p th:text="${basketPosition.item.name}" class="book-title"></p>
+      <p th:text="${basketPosition.item.category}" class="book-author"></p>
+      <div class="book-info">
+        <div th:text="'Cena: ' + ${basketPosition.item.price}"></div>
+        <div th:text="'Ilość sztuk: ' + ${basketPosition.item.quantity}"></div>
+        <div th:text="'KOd: ' + ${basketPosition.item.code}"></div>
+      </div>
+    </div>
+  </th:block>
+</div>
+</body>
+</html>

@@ -16,9 +16,9 @@ public class Database {
 
     public Database(){
 
-        items.add(new Item("Telefon", 20.0, 2, "123-123", "telefony"));
-        items.add(new Item("Telefon", 20.0, 2, "123-123", "telefony"));
-        items.add(new Item("Telefon", 20.0, 2, "123-123", "telefony"));
+        items.add(new Item("Smartfon APPLE iPhone 12 64GB Czarny MGJ53PM/A", 999.9, 2, "123-123", "smartfon"));
+        items.add(new Item("Laptop HP Pavilion Gaming 15-ec0045nw FHD Ryzen5-3550H/16GB/512GB SSD/GTX1650 4GB/Win10H", 6999.9, 5, "222-222", "laptop"));
+        items.add(new Item("Monitor XIAOMI Mi Curved Gaming 34", 1499.9, 3, "333-333", "monitor"));
         users.add(new User("Karol","Garlacz","admin", DigestUtils.md5Hex("admin"), User.Status.ADMIN));
         users.add(new User("Jan","Kowalczyk","user", DigestUtils.md5Hex("user"), User.Status.USER));
     }
@@ -26,6 +26,10 @@ public class Database {
     public List<Item> getAllItems() {
 
         return this.items;
+    }
+    public List<User> getAllUsers() {
+
+        return this.users;
     }
 
     public void addItem(Item item) {

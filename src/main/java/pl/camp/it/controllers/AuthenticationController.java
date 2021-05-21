@@ -46,6 +46,6 @@ public class AuthenticationController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout() {
         this.sessionObject.logoutUser();
-        return "redirect:/";
+        return "redirect:/index";
     }
 }

@@ -6,29 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <title>OnlineShop</title>
 </head>
 <body>
+<header id="nav">
     <div class="container">
-        <div class="reg">
-            <a href="/index.html"><i class="fas fa-home"></i></a>
-            <a href="">Rejestracja</a>
-            <a href="">Logowanie</a>
-        </div>
-    
-        <div id="content-login">
-            <form id="login-form" method="post" onsubmit="return validate()">
-                <div th:if="${info != null}" th:text="${info}" class="error-info"></div>
-                <input type="text" placeholder="Login" id="login-field" name="login">
-                <input type="password" placeholder="Hasło" id="password-field" name="password">
-                <input type="submit" value="Zaloguj">
-            </form>
-        </div>
-        
+        <div class="row">
+
+    <div class="navbar">
+        <ul>
+            <li><a href="">Rejestracja</a>
+            <a href="/login">Logowanie</a></li>
+        </ul>
     </div>
-    <script src="app.js"></script>
+        </div>
+    </div>
+</header>
+    <div id="content-login">
+        <form id="login-form" method="post" onsubmit="return validate()">
+            <!-- <div th:if="${info != null}" th:text="${info}" class="error-info"></div> -->
+            <input type="text" placeholder="Login" id="login-field" name="login">
+            <input type="password" placeholder="Hasło" id="password-field" name="password">
+            <input type="submit" value="Zaloguj">
+        </form>
+    </div>
+
+</div>
+<script src="app.js"></script>
 </body>
 </html>
