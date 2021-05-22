@@ -11,17 +11,77 @@
     <title>Online shop</title>
 </head>
 <body>
-<div id="content">
-    <form id="add-item-form" method="post" onsubmit="return validate()">
-        <div th:if="${info != null}" th:text="${info}" class="error-info"></div>
-        <input type="text" placeholder="Nazwa" th:field="*{item.name}">
-        <input type="text" placeholder="Kategoria" th:field="*{item.category}">
-        <input type="text" placeholder="Cena" th:field="*{item.price}" id="price-input">
-        <input type="text" placeholder="Ilość" th:field="*{item.quantity}" id="quantity-input">
-        <input type="text" placeholder="Kod" th:field="*{item.code}" id="code-input">
-        <input type="submit" value="Wyślij">
-    </form>
+<div class="wrapper">
+    <header id="nav">
+        <div class="container">
+            <div class="row">
+                <div class="brand-name">
+
+                    <!-- Wywala błąd 500 - nie wiem jak wyciągnąć imie użytkownika/admina po zalogowaniu-->
+
+                    <!-- <p th:if="${logged == true}" th:text="'Witaj: ' + ${user.name}"></p>-->
+                </div>
+
+                <div class="navbar">
+                    <ul>
+                        <li><a href="" th:if="${logged == false}">Rejestracja</a>
+                            <a href="/login" th:if="${logged == false}">Zaloguj</a>
+                            <a href="/logout" th:if="${logged == true}">Wyloguj</a>
+                            <a href="/history" th:if="${role?.name() == 'USER'}">Historia</a>
+                            <a href="/basket" th:if="${role?.name() == 'USER'}"><i class="fas fa-shopping-basket"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        ONLINE SHOP
+    </section>
+    <section class="main-menu">
+        <div class="grid-container">
+            <div class="grid-item-menu">
+                <div class="cat">Kategorie</div>
+                <div class="products">Telefony</div>
+                <div class="products">Laptopy</div>
+                <div class="products">Tablety</div>
+
+            </div>
+            <div class="grid-item">
+                <div id="content">
+
+                        <form id="add-item-form" method="post" onsubmit="return validate()">
+                            <div th:if="${info != null}" th:text="${info}" class="error-info"></div>
+                            <input type="text" placeholder="Nazwa" th:field="*{item.name}">
+                            <input type="text" placeholder="Kategoria" th:field="*{item.category}">
+                            <input type="text" placeholder="Cena" th:field="*{item.price}" id="price-input">
+                            <input type="text" placeholder="Ilość" th:field="*{item.quantity}" id="quantity-input">
+                            <input type="text" placeholder="Kod" th:field="*{item.code}" id="code-input">
+                            <input type="submit" value="Wyślij">
+                        </form>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
 </div>
 <script src="app.js"></script>
 </body>
 </html>
+
+
+<!--<div id="content">-->
+<!--    <form id="add-item-form" method="post" onsubmit="return validate()">-->
+<!--        <div th:if="${info != null}" th:text="${info}" class="error-info"></div>-->
+<!--        <input type="text" placeholder="Nazwa" th:field="*{item.name}">-->
+<!--        <input type="text" placeholder="Kategoria" th:field="*{item.category}">-->
+<!--        <input type="text" placeholder="Cena" th:field="*{item.price}" id="price-input">-->
+<!--        <input type="text" placeholder="Ilość" th:field="*{item.quantity}" id="quantity-input">-->
+<!--        <input type="text" placeholder="Kod" th:field="*{item.code}" id="code-input">-->
+<!--        <input type="submit" value="Wyślij">-->
+<!--    </form>-->
+<!--</div>-->

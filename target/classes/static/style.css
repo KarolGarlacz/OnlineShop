@@ -179,7 +179,23 @@ body {
     color: black;
 
 }
+.buy a{
+    display:inline-block;
+    text-decoration:none;
+    text-align:center;
+    margin:2px;
+    border: 1px solid black;
+    font-size: 10px;
+    padding: 5px;
+    transition: .5 linear;
+    background-color: none;
+    text-transform: uppercase;
+    color: black;
+}
 .buy:hover{
+    color: #18C491;
+}
+.buy a:hover{
     color: #18C491;
 }
 
@@ -203,6 +219,7 @@ body {
     text-align: center;
     font-size: 22px;
     margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 #add-item-form input[type=text] {

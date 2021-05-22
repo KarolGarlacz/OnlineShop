@@ -19,7 +19,7 @@
 
                    <!-- Wywala błąd 500 - nie wiem jak wyciągnąć imie użytkownika/admina po zalogowaniu-->
 
-                   <!-- <p th:if="${logged == true}" th:text="'Witaj: ' + ${user.name}"></p>-->
+                   <!--<p th:if="${logged == true}" th:text="'Witaj: ' + ${user.name}"></p>-->
                 </div>
 
                 <div class="navbar">
@@ -67,7 +67,7 @@
                             </div>
                             <div class="price" th:text="'Cena: ' + ${item.price}">></div>
                             <div class="button">
-                                <button class="buy" th:if="${logged == false}" method ="post" onsubmit=" return errorFunction()">Kup</button>
+                                <button class="buy" th:if="${logged == false}" method ="post" onclick=" return errorFunction()">Kup</button>
                                 <div class="buy" th:if="${role?.name() == 'USER'}"><a th:href="@{/addToBasket/{code}(code=${item.code})}">Kup</a></div>
                                 <div class="buy" th:if="${role?.name() == 'ADMIN'}"><a th:href="@{/editItem/{code}(code=${item.code})}">Edytuj</a></div>
                                 <div class="buy" th:if="${role?.name() == 'ADMIN'}"><i class="fas fa-trash"></i></div>
