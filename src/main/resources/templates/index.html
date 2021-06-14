@@ -19,12 +19,12 @@
 
                    <!-- Wywala błąd 500 - nie wiem jak wyciągnąć imie użytkownika/admina po zalogowaniu-->
 
-                   <!--<p th:if="${logged == true}" th:text="'Witaj: ' + ${user.name}"></p>-->
+                   <p th:if="${logged == true}" th:text="'Witaj: ' + ${user.name}"></p>
                 </div>
 
                 <div class="navbar">
                     <ul>
-                        <li><a href="" th:if="${logged == false}">Rejestracja</a>
+                        <li><a href="/register" th:if="${logged == false}">Rejestracja</a>
                         <a href="/login" th:if="${logged == false}">Zaloguj</a>
                         <a href="/logout" th:if="${logged == true}">Wyloguj</a>
                             <a href="/history" th:if="${role?.name() == 'USER'}">Historia</a>

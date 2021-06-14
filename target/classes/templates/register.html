@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <title>OnlineShop</title>
+</head>
+<body>
+<header id="nav">
+  <div class="container">
+    <div class="row">
+
+      <div class="navbar">
+        <ul>
+          <li><a href="">Rejestracja</a>
+            <a href="/login">Logowanie</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div id="content-login">
+  <form id="login-form" method="post" onsubmit="return validate()">
+    <!-- <div th:if="${info != null}" th:text="${info}" class="error-info"></div> -->
+    <input type="text" placeholder="Imię" id="name-field" name="name">
+    <input type="text" placeholder="Nazwisko" id="surname-field" name="surname">
+    <input type="text" placeholder="Login" id="login-field" name="login">
+    <input type="password" placeholder="Hasło" id="password-field" name="password">
+    <input type="submit" value="Zarejestruj">
+  </form>
+</div>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>

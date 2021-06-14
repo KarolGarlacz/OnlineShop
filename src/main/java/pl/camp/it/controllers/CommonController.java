@@ -28,6 +28,7 @@ public class CommonController {
         List<Item> items = this.database.getAllItems();
         List<User> users = this.database.getAllUsers();
 
+        model.addAttribute("user" , this.sessionObject.getUser());
         model.addAttribute("items", items);
         model.addAttribute("name", users);
         model.addAttribute("logged", this.sessionObject.isLogged());

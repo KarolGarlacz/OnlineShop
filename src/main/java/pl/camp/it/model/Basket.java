@@ -19,28 +19,28 @@ public class Basket {
     public void addItem(Item item) {
         for(BasketPosition basketPosition : this.basketPositions) {
             if(basketPosition.getItem().getCode().equals(item.getCode())) {
-                basketPosition.setPieces(basketPosition.getPieces() + 1);
+                basketPosition.setQuantity(basketPosition.getQuantity() + 1);
                 return;
             }
         }
 
         BasketPosition basketPosition = new BasketPosition();
         basketPosition.setItem(item);
-        basketPosition.setPieces(1);
+        basketPosition.setQuantity(1);
 
         this.basketPositions.add(basketPosition);
     }
 
     public class BasketPosition {
         private Item item;
-        private int pieces;
+        private int quantity;
 
         public BasketPosition() {
         }
 
-        public BasketPosition(Item item, int pieces) {
+        public BasketPosition(Item item, int quantity) {
             this.item = item;
-            this.pieces = pieces;
+            this.quantity = quantity;
         }
 
         public Item getItem() {
@@ -51,12 +51,12 @@ public class Basket {
             this.item = item;
         }
 
-        public int getPieces() {
-            return pieces;
+        public int getQuantity() {
+            return quantity;
         }
 
-        public void setPieces(int pieces) {
-            this.pieces = pieces;
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
         }
     }
 }
