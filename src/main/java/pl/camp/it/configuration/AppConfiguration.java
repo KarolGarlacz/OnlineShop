@@ -13,14 +13,14 @@ import java.sql.SQLException;
 @ComponentScan("pl.camp.it")
 public class AppConfiguration {
 
-    @Bean
+   @Bean
     public Connection connection(){
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           return DriverManager.getConnection("jdbc:mysql://localhost:3306/shopstore?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&characterEncoding=utf8", "root", "");
+       } catch (ClassNotFoundException | SQLException e) {
+           e.printStackTrace();
+       }
+       return null;
     }
 }

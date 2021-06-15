@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.camp.it.database.Database;
 import pl.camp.it.model.Item;
+import pl.camp.it.services.IItemService;
 import pl.camp.it.session.SessionObject;
-import pl.camp.it.validators.ItemValidator;
 
 import javax.annotation.Resource;
 
@@ -19,7 +18,7 @@ public class ItemController {
 
 
 @Autowired
-Database database;
+    IItemService itemService;
 
 @Resource
     SessionObject sessionObject;
@@ -37,25 +36,16 @@ Database database;
 }
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
     public String addItem(@ModelAttribute Item item) {
-        if(!ItemValidator.validateBasics(item)) {
+        if (this.itemService.addItem(item)) {
             this.sessionObject.setInfo("Nieprawidłowy kod produktu lub ilość !!");
-            return "redirect:/addItem";
+            return "redirect:/index";
         }
-        Item itemFromDatabase = this.database.findItemsByCode(item.getCode());
-        if(itemFromDatabase != null) {
-            itemFromDatabase.setQuantity(itemFromDatabase.getQuantity() + item.getQuantity());
-        } else {
-            if(!ItemValidator.validateFull(item)) {
-                this.sessionObject.setInfo("Produkt o podanym kodzie nie istnieje, pełne dane wymagane !!");
-                return "redirect:/addItem";
-            }
-            this.database.addItem(item);
-        }
-        return "redirect:/index";
+        return "redirect:/addItem";
     }
+
     @RequestMapping(value = "/editItem/{code}", method = RequestMethod.GET)
-    public String edititemForm(Model model, @PathVariable String code) {
-        Item item = this.database.findItemsByCode(code);
+    public String editItemForm(Model model, @PathVariable String code) {
+        Item item = this.itemService.findItemByCode(code);
         if(item == null) {
             return "redirect:/index";
         }
@@ -68,17 +58,10 @@ Database database;
     }
     @RequestMapping(value = "/editItem/{code}", method = RequestMethod.POST)
     public String editItem(@PathVariable String code, @ModelAttribute Item item) {
-        Item itemFromDb = database.findItemsByCode(code);
-        if(itemFromDb == null) {
-            return "redirect:/editItem/" + code;
+
+        if(this.itemService.updateItem(code, item)) {
+            return "redirect:/index";
         }
-
-        itemFromDb.setName(item.getName());
-        itemFromDb.setCategory(item.getCategory());
-        itemFromDb.setQuantity(item.getQuantity());
-        itemFromDb.setPrice(item.getPrice());
-        itemFromDb.setCode(item.getCode());
-
-        return "redirect:/index";
+        return "redirect:/editItem/" + code;
     }
 }

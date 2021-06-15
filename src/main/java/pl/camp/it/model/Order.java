@@ -13,7 +13,7 @@ public class Order {
     private int userId;
 
     public Order(User user, List<BasketPosition> positions){
-        this.user =user;
+        this.user = user;
         this.positions = positions;
 
         this.price = 0;

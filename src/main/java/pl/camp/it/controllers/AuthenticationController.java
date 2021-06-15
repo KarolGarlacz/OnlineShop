@@ -3,11 +3,12 @@ package pl.camp.it.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.camp.it.database.Database;
 import pl.camp.it.model.User;
+import pl.camp.it.services.IAuthenticationService;
 import pl.camp.it.session.SessionObject;
 import pl.camp.it.validators.LoginValidator;
 
@@ -17,7 +18,7 @@ import javax.annotation.Resource;
 public class AuthenticationController {
 
     @Autowired
-    Database database;
+    IAuthenticationService authenticationService;
 
     @Resource
     SessionObject sessionObject;
@@ -34,9 +35,7 @@ public class AuthenticationController {
             this.sessionObject.setInfo("Logowanie nieudane !!");
             return "redirect:/login";
         }
-        User user = database.authenticate(login, password);
-        if(user != null) {
-            sessionObject.setUser(user);
+        if(authenticationService.authenticate(login, password)){
             return "redirect:/index";
         } else  {
             this.sessionObject.setInfo("Logowanie nieudane !!");
@@ -47,5 +46,10 @@ public class AuthenticationController {
     public String logout() {
         this.sessionObject.logoutUser();
         return "redirect:/index";
+    }
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@ModelAttribute User user){
+        this.authenticationService.registerUser(user);
+        return "redirect:/login";
     }
 }

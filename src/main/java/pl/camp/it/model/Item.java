@@ -1,6 +1,7 @@
 package pl.camp.it.model;
 
 public class Item {
+    private int id;
     private String name;
     private Double price;
     private Integer quantity;
@@ -13,12 +14,21 @@ public Item(){
 
 }
 
-    public Item(String name, Double price, Integer quantity, String code, String category) {
+    public Item(int id, String name, Double price, Integer quantity, String code, String category) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.code = code;
         this.category = category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

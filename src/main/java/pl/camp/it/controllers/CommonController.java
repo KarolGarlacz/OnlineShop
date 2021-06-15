@@ -6,36 +6,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.camp.it.database.Database;
-import pl.camp.it.model.Item;
-import pl.camp.it.model.User;
+import org.springframework.web.bind.annotation.RequestParam;
+import pl.camp.it.services.IItemService;
 import pl.camp.it.session.SessionObject;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Controller
 public class CommonController {
 
-@Autowired
-    Database database;
+ @Autowired
+ IItemService itemService;
 
 @Resource
     SessionObject sessionObject;
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String main(Model model) {
-        List<Item> items = this.database.getAllItems();
-        List<User> users = this.database.getAllUsers();
 
-        model.addAttribute("user" , this.sessionObject.getUser());
-        model.addAttribute("items", items);
-        model.addAttribute("name", users);
+        model.addAttribute("items", this.itemService.getItemsWithFilter());
         model.addAttribute("logged", this.sessionObject.isLogged());
         model.addAttribute("role",
                 this.sessionObject.getUser() != null ? this.sessionObject.getUser().getStatus() : null);
         return "index";
-
+    }
+    @RequestMapping(value = "/find", method = RequestMethod.POST)
+    public String find(@RequestParam String pattern){
+        this.sessionObject.setFindPattern(pattern);
+        return "redirect:/";
 
     }
 }

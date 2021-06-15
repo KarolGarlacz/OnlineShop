@@ -59,7 +59,10 @@
                         <p th:text="${item.name}" class="item-name"></p>
 
                         <div class="item-info">
-
+                            <form id="finder" method="post" action="/find">
+                                <input type="text" name="pattern">
+                                <input type="submit" value="Wyszukaj">
+                            </form>
                             <div class="datail">
                                 <p class="price" th:text="'Kategoria: ' + ${item.category}"></p>
                                 <p class="quantity" th:text="'Ilość sztuk: ' + ${item.quantity}"></p>

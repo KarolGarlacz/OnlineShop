@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <title>Online shop</title>
+</head>
+<body>
+<div id="content">
+  <th:block th:each="order : ${orders}">
+    <div class="order">
+      <div th:text="${order.id}" class="order-id"></div>
+      <div th:text="${order.date}"></div>
+      <div th:text="${order.price + ' zł'}"></div>
+      <div class="positions">
+        <th:block th:each="basketPosition : ${order.positions}">
+          <div class="position">
+            <div th:text="${basketPosition.item.name}" class="position-title"></div>
+            <div th:text="${basketPosition.quantity}" class="position-pieces"></div>
+            <div th:text="${basketPosition.item.price + ' zł'}" class="position-price"></div>
+            <div th:text="${(basketPosition.quantity * basketPosition.item.price) + ' zł'}" class="position-sum-price"></div>
+          </div>
+        </th:block>
+      </div>
+    </div>
+  </th:block>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
