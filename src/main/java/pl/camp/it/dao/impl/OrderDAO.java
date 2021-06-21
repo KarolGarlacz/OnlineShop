@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class OrderDAO {
+public class OrderDAO implements IOrderDAO{
 
     @Autowired
     Connection connection;
@@ -41,6 +41,12 @@ public class OrderDAO {
         }
         return 0;
     }
+
+    @Override
+    public List<Order> getOrdersForUser(int userId) {
+        return null;
+    }
+
     public List<Order> getOrderForUser(int userId){
         List<Order> result = new ArrayList<>();
 

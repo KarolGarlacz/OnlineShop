@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ItemDAO  {
+public class ItemDAO implements IItemDAO{
 
     @Autowired
     Connection connection;
@@ -67,12 +67,16 @@ public class ItemDAO  {
             preparedStatement.setInt(3,item.getQuantity());
             preparedStatement.setString(4, item.getCode());
             preparedStatement.setString(5, item.getCategory());
+            preparedStatement.executeUpdate();
 
         }catch (SQLException throwables){
             throwables.printStackTrace();
         }
     }
-public Item findItemByCode(String code){
+
+
+
+    public Item findItemsByCode(String code){
         try{
             String sql = "SELECT * FROM titem WHERE code = ?";
 
@@ -103,6 +107,7 @@ public void updateItem(Item item){
             preparedStatement.setInt(3,item.getQuantity());
             preparedStatement.setString(4, item.getCode());
             preparedStatement.setString(5, item.getCategory());
+            preparedStatement.setInt(6, item.getId());
 
             preparedStatement.executeUpdate();
 

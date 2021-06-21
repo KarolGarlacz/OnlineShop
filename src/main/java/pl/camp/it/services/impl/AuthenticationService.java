@@ -22,8 +22,8 @@ public class AuthenticationService implements IAuthenticationService {
 
     public boolean authenticate(String login, String password){
         User user = this.userDAO.getUserByLogin(login);
-
-        if(user != null && user.getPassword().equals(DigestUtils.md5Hex(password))){
+        if(user != null && user.getPassword().equals(password)){
+       /* if(user != null && user.getPassword().equals(DigestUtils.md5Hex(password))){*/
             sessionObject.setUser(user);
             return true;
         }
@@ -31,7 +31,8 @@ public class AuthenticationService implements IAuthenticationService {
     }
     public void registerUser(User user){
         user.setStatus(User.Status.USER);
-        user.setPassword(DigestUtils.md5Hex(user.getPassword()));
+        user.setPassword(user.getPassword());
+        /*user.setPassword(DigestUtils.md5Hex(user.getPassword()));*/
         this.userDAO.addUser(user);
     }
 }

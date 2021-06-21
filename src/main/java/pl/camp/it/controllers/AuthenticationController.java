@@ -47,6 +47,12 @@ public class AuthenticationController {
         this.sessionObject.logoutUser();
         return "redirect:/index";
     }
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String registerForm(Model model){
+        model.addAttribute("user", new User());
+        return "register";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@ModelAttribute User user){
         this.authenticationService.registerUser(user);

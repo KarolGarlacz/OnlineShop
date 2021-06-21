@@ -1,6 +1,7 @@
 package pl.camp.it.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.camp.it.dao.IUserDAO;
 import pl.camp.it.model.User;
 
@@ -9,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Component
 public class UserDAO implements IUserDAO {
 
     @Autowired
@@ -27,14 +29,17 @@ public class UserDAO implements IUserDAO {
             if(!rs.next()){
                 return null;
             }
+            return mapUser(rs);
         }catch (SQLException throwables){
             throwables.printStackTrace();
         }
         return null;
     }
+
+
     public void addUser(User user){
         try{
-            String sql = "INSERT INTO tuser (name, surname, login, password, role) VALUES (?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO tuser (name, surname, login, password, status) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, user.getName());

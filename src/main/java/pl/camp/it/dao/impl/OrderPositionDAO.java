@@ -2,6 +2,7 @@ package pl.camp.it.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pl.camp.it.dao.IOrderPositionDAO;
 import pl.camp.it.model.BasketPosition;
 
 import java.sql.Connection;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class OrderPositionDAO {
+public class OrderPositionDAO implements IOrderPositionDAO {
 
     @Autowired
     Connection connection;

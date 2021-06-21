@@ -19,15 +19,14 @@
 
                    <!-- Wywala błąd 500 - nie wiem jak wyciągnąć imie użytkownika/admina po zalogowaniu-->
 
-                   <!--<p th:if="${logged == true}" th:text="'Witaj: ' + ${user.name}"></p>-->
+                   <p th:if="${logged == true}" th:text="'Witaj: ' + ${user.name}"></p>
                 </div>
 
                 <div class="navbar">
                     <ul>
-                        <li>
-                            <a href="/register" th:if="${logged == false}">Rejestracja</a>
-                            <a href="/login" th:if="${logged == false}">Zaloguj</a>
-                            <a href="/logout" th:if="${logged == true}">Wyloguj</a>
+                        <li><a href="/register" th:if="${logged == false}">Rejestracja</a>
+                        <a href="/login" th:if="${logged == false}">Zaloguj</a>
+                        <a href="/logout" th:if="${logged == true}">Wyloguj</a>
                             <a href="/history" th:if="${role?.name() == 'USER'}">Historia</a>
                             <a href="/basket" th:if="${role?.name() == 'USER'}"><i class="fas fa-shopping-basket"></i></a>
                         </li>
@@ -51,10 +50,6 @@
             </div>
             <div class="grid-item">
                 <div id="content">
-                    <form id="finder" method="post" action="/find">
-                        <input type="text" name="pattern">
-                        <input type="submit" value="Wyszukaj">
-                    </form>
                     <div class="add-item" th:if="${role?.name() == 'USER'}"><a href="/addItem" class="addItem">Dodaj przedmiot</a></div>
 
                     <th:block th:each="item : ${items}">
@@ -64,7 +59,10 @@
                         <p th:text="${item.name}" class="item-name"></p>
 
                         <div class="item-info">
-
+                            <form id="finder" method="post" action="/find">
+                                <input type="text" name="pattern">
+                                <input type="submit" value="Wyszukaj">
+                            </form>
                             <div class="datail">
                                 <p class="price" th:text="'Kategoria: ' + ${item.category}"></p>
                                 <p class="quantity" th:text="'Ilość sztuk: ' + ${item.quantity}"></p>
