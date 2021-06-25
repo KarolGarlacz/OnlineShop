@@ -30,14 +30,14 @@ public class ItemController {
     model.addAttribute("item", new Item());
     model.addAttribute("info", this.sessionObject.getInfo());
     model.addAttribute("logged", this.sessionObject.isLogged());
-    model.addAttribute("role", this.sessionObject.getUser() !=null ? this.sessionObject.getUser().getStatus() : null);
+    model.addAttribute("status", this.sessionObject.getUser() !=null ? this.sessionObject.getUser().getStatus() : null);
 
     return "addItem";
 }
     @RequestMapping(value = "/addItem", method = RequestMethod.POST)
     public String addItem(@ModelAttribute Item item) {
         if (this.itemService.addItem(item)) {
-            this.sessionObject.setInfo("Nieprawidłowy kod produktu lub ilość !!");
+
             return "redirect:/index";
         }
         return "redirect:/addItem";

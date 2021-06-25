@@ -42,12 +42,8 @@ public class OrderDAO implements IOrderDAO{
         return 0;
     }
 
-    @Override
-    public List<Order> getOrdersForUser(int userId) {
-        return null;
-    }
 
-    public List<Order> getOrderForUser(int userId){
+    public List<Order> getOrdersForUser(int userId){
         List<Order> result = new ArrayList<>();
 
         try{

@@ -33,7 +33,7 @@ public class CommonController {
     @RequestMapping(value = "/find", method = RequestMethod.POST)
     public String find(@RequestParam String pattern){
         this.sessionObject.setFindPattern(pattern);
-        return "redirect:/";
+        return "redirect:/index";
 
     }
 }

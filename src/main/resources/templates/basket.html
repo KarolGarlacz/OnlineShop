@@ -14,9 +14,9 @@
 <div id="content">
   <th:block th:each="basketPosition : ${basket.basketPositions}">
     <div class="position">
-      <p th:text="${basketPosition.item.name}" class="book-title"></p>
-      <p th:text="${basketPosition.item.category}" class="book-author"></p>
-      <div class="book-info">
+      <p th:text="${basketPosition.item.name}" class="item-name"></p>
+      <p th:text="${basketPosition.item.category}" class="item-category"></p>
+      <div class="item-info">
         <div th:text="'Cena: ' + ${basketPosition.item.price}"></div>
         <div th:text="'Ilość sztuk: ' + ${basketPosition.item.quantity}"></div>
         <div th:text="'KOd: ' + ${basketPosition.item.code}"></div>
@@ -25,7 +25,7 @@
   </th:block>
   <div th:text="${sum + ' zł'}" id="bill-value"></div>
   <div id="bill-label">Suma:</div>
-  <a href="/order">Złóż zamówienie</a>
+  <a href="/orders">Złóż zamówienie</a>
 </div>
 </body>
 </html>

@@ -233,3 +233,17 @@ body {
 .error-info {
     color: red;
 }
+
+// BASKET
+
+#content{
+margin: 20px;
+}
+.position{
+margin: 20px auto;
+padding:3px;
+border: 1px solid black;
+}
+#bill-label{
+text-transform: uppercase;
+}
